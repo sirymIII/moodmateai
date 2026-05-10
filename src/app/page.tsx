@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MessageSquare, LayoutDashboard, Moon, Sun, Heart, BrainCircuit } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,10 +24,12 @@ export default function HomePage() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
-              <Heart className="w-5 h-5 fill-current" />
-            </div>
-            <h1 className="text-xl font-bold font-headline tracking-tight text-primary">MoodMate AI</h1>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
+                <Heart className="w-5 h-5 fill-current" />
+              </div>
+              <h1 className="text-xl font-bold font-headline tracking-tight text-primary">MoodMate AI</h1>
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">
@@ -38,10 +42,16 @@ export default function HomePage() {
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
             <div className="hidden md:flex gap-4">
-               <Button variant="ghost" className="font-medium">Articles</Button>
-               <Button variant="ghost" className="font-medium">Crisis Help</Button>
+               <Button variant="ghost" className="font-medium" asChild>
+                 <Link href="/articles">Articles</Link>
+               </Button>
+               <Button variant="ghost" className="font-medium text-destructive hover:text-destructive" asChild>
+                 <Link href="/crisis">Crisis Help</Link>
+               </Button>
             </div>
-            <Button className="rounded-full px-6">Sign In</Button>
+            <Button className="rounded-full px-6" asChild>
+              <Link href="/login">Sign In</Link>
+            </Button>
           </div>
         </div>
       </header>
@@ -130,10 +140,10 @@ export default function HomePage() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium">
-              <a href="#" className="hover:text-primary">About</a>
-              <a href="#" className="hover:text-primary">Privacy Policy</a>
-              <a href="#" className="hover:text-primary">Terms of Service</a>
-              <a href="#" className="hover:text-primary">Contact</a>
+              <Link href="/about" className="hover:text-primary">About</Link>
+              <Link href="/privacy" className="hover:text-primary">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-primary">Terms of Service</Link>
+              <Link href="/crisis" className="hover:text-primary">Contact (Crisis)</Link>
             </div>
           </div>
           <Separator className="my-8" />
@@ -145,3 +155,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    
