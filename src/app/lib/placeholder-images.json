@@ -1,0 +1,17 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A calm, peaceful nature scene to promote mental well-being.",
+      "imageUrl": "https://picsum.photos/seed/moodmate-hero/1200/600",
+      "imageHint": "peaceful nature"
+    },
+    {
+      "id": "user-avatar",
+      "description": "A friendly placeholder user avatar.",
+      "imageUrl": "https://picsum.photos/seed/user-88/100/100",
+      "imageHint": "profile avatar"
+    }
+  ]
+}

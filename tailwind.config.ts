@@ -1,4 +1,6 @@
-import type {Config} from 'tailwindcss';
+
+import type {Config} from 'tailwind-merge';
+import tailwindAnimate from 'tailwindcss-animate';
 
 export default {
   darkMode: ['class'],
@@ -10,8 +12,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Alegreya', 'serif'],
+        headline: ['Belleza', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -95,5 +97,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-} satisfies Config;
+  plugins: [tailwindAnimate],
+} satisfies any;
