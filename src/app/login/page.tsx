@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Heart, Chrome, Mail, Lock } from "lucide-react";
+import { Heart, Chrome, Mail, Lock, User } from "lucide-react";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -14,19 +14,20 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  const handleSocialLogin = (provider: string) => {
+  const handleSocialAction = (provider: string) => {
     setIsLoading(true);
-    // Simulation of social login
+    // Simulation of social login/signup
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
   };
 
-  const handleEmailLogin = (e: React.FormEvent) => {
+  const handleAuthAction = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulation of email login
+    // Simulation of email auth
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
@@ -45,90 +46,170 @@ export default function LoginPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="social" className="space-y-6">
+          <Tabs defaultValue="login" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 rounded-full h-10">
-              <TabsTrigger value="social" className="rounded-full">Social</TabsTrigger>
-              <TabsTrigger value="email" className="rounded-full">Email</TabsTrigger>
+              <TabsTrigger value="login" className="rounded-full">Sign In</TabsTrigger>
+              <TabsTrigger value="signup" className="rounded-full">Sign Up</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="social" className="space-y-4 animate-in fade-in-50 duration-300">
-              <Button 
-                variant="outline"
-                className="w-full rounded-full h-12 gap-3 border-2" 
-                onClick={() => handleSocialLogin('google')}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></span>
-                ) : (
-                  <Chrome className="w-5 h-5 text-primary" />
-                )}
-                Continue with Google
-              </Button>
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Or access via email</span>
-                </div>
-              </div>
-              <p className="text-xs text-center text-muted-foreground italic">
-                Prefer using an account? Switch to the Email tab.
-              </p>
-            </TabsContent>
-
-            <TabsContent value="email" className="space-y-4 animate-in fade-in-50 duration-300">
-              <form onSubmit={handleEmailLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="name@example.com" 
-                      className="pl-10 rounded-xl"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      id="password" 
-                      type="password" 
-                      placeholder="••••••••" 
-                      className="pl-10 rounded-xl"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
+            <TabsContent value="login" className="space-y-4 animate-in fade-in-50 duration-300">
+              <div className="space-y-4">
                 <Button 
-                  type="submit" 
-                  className="w-full rounded-full h-12" 
+                  variant="outline"
+                  className="w-full rounded-full h-12 gap-3 border-2" 
+                  onClick={() => handleSocialAction('google')}
                   disabled={isLoading}
                 >
-                  {isLoading ? "Signing in..." : "Sign In"}
+                  {isLoading ? (
+                    <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></span>
+                  ) : (
+                    <Chrome className="w-5 h-5 text-primary" />
+                  )}
+                  Continue with Google
                 </Button>
-              </form>
-              <div className="text-center">
-                <Link href="#" className="text-xs text-primary hover:underline">
-                  Forgot your password?
-                </Link>
+                
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">Or email login</span>
+                  </div>
+                </div>
+
+                <form onSubmit={handleAuthAction} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        placeholder="name@example.com" 
+                        className="pl-10 rounded-xl"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="password" 
+                        type="password" 
+                        placeholder="••••••••" 
+                        className="pl-10 rounded-xl"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full rounded-full h-12" 
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Signing in..." : "Sign In"}
+                  </Button>
+                </form>
+                <div className="text-center">
+                  <Link href="#" className="text-xs text-primary hover:underline">
+                    Forgot your password?
+                  </Link>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="signup" className="space-y-4 animate-in fade-in-50 duration-300">
+              <div className="space-y-4">
+                <Button 
+                  variant="outline"
+                  className="w-full rounded-full h-12 gap-3 border-2" 
+                  onClick={() => handleSocialAction('google')}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></span>
+                  ) : (
+                    <Chrome className="w-5 h-5 text-primary" />
+                  )}
+                  Sign up with Google
+                </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">Or create account</span>
+                  </div>
+                </div>
+
+                <form onSubmit={handleAuthAction} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-name">Full Name</Label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="signup-name" 
+                        type="text" 
+                        placeholder="John Doe" 
+                        className="pl-10 rounded-xl"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-email">Email Address</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="signup-email" 
+                        type="email" 
+                        placeholder="name@example.com" 
+                        className="pl-10 rounded-xl"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-password">Password</Label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="signup-password" 
+                        type="password" 
+                        placeholder="••••••••" 
+                        className="pl-10 rounded-xl"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full rounded-full h-12" 
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Creating account..." : "Create Account"}
+                  </Button>
+                </form>
               </div>
             </TabsContent>
           </Tabs>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <p className="text-[10px] text-center text-muted-foreground leading-relaxed">
-            By signing in, you agree to our{" "}
+            By continuing, you agree to our{" "}
             <Link href="/terms" className="underline hover:text-primary">Terms of Service</Link>{" "}
             and{" "}
             <Link href="/privacy" className="underline hover:text-primary">Privacy Policy</Link>.
