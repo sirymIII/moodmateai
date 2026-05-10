@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -6,7 +5,7 @@ import { ChatInterface } from "@/components/chat-interface";
 import { MoodDashboard } from "@/components/mood-dashboard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MessageSquare, LayoutDashboard, Moon, Sun, Heart, Menu } from "lucide-react";
+import { MessageSquare, LayoutDashboard, Moon, Sun, Heart, BrainCircuit } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
