@@ -53,3 +53,4 @@ The app will be running at [http://localhost:3000](http://localhost:3000).
 - **Crisis Help**: Immediate access to support lifelines.
 - **Admin Portal**: Platform oversight and security monitoring.
 - **Responsive Design**: Optimized for mobile and desktop.
+# moodmate
