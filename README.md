@@ -1,56 +1,55 @@
+
 # MoodMate AI
 
 An AI-powered web chatbot for mental health management and emotional support.
 
-## Getting Started (Download & Push)
+## 🚀 How to Push to GitHub
 
-To get this code onto your local machine, follow these steps:
+If you are seeing errors in the terminal, follow these exact steps. 
 
-### 1. Push from this environment to GitHub
-Run these commands in the terminal here:
-
+### 1. Initialize and Stage
+Run these commands in the terminal:
 ```bash
 git init
 git add .
-git commit -m "Initial commit: Setup MoodMate AI platform"
+git commit -m "Initial commit: Setup MoodMate AI"
+```
+
+### 2. Connect to your Repository
+```bash
 git branch -M main
 git remote add origin https://github.com/sirymIII/moodmateai.git
+```
+
+### 3. Push to GitHub
+```bash
 git push -u origin main
 ```
 
-### 2. Download to your local machine
-Once pushed, open a terminal on your computer and run:
+**Note on Errors:** If GitHub asks for a password and your normal password doesn't work, you must use a **Personal Access Token (PAT)**. 
+1. Go to GitHub Settings -> Developer Settings -> Personal Access Tokens -> Tokens (classic).
+2. Generate a token with 'repo' permissions.
+3. Use that token as your password when the terminal asks for it.
 
-```bash
-git clone https://github.com/sirymIII/moodmateai.git
-cd moodmateai
-```
+## 📥 How to Run Locally
 
-### 3. Local Setup
-After cloning, install the dependencies and start the development server:
+Once the code is pushed, you can download it to your computer:
 
-```bash
-npm install
-npm run dev
-```
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/sirymIII/moodmateai.git
+   cd moodmateai
+   ```
 
-The app will be running at [http://localhost:3000](http://localhost:3000).
+2. **Install and Start:**
+   ```bash
+   npm install
+   npm run dev
+   ```
+   The app will be available at `http://localhost:3000`.
 
 ## Tech Stack
-
 - **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS
-- **UI Components**: ShadCN UI
-- **State Management**: Zustand
-- **AI Engine**: Genkit with Google Gemini 2.5 Flash
-- **Icons**: Lucide React
-
-## Project Features
-
-- **Empathetic AI Chat**: Real-time emotional support.
-- **Mood Dashboard**: Visualize emotional trends with Recharts.
-- **Resource Center**: Articles on mental health and drug abuse.
-- **Crisis Help**: Immediate access to support lifelines.
-- **Admin Portal**: Platform oversight and security monitoring.
-- **Responsive Design**: Optimized for mobile and desktop.
-# moodmate
+- **AI**: Genkit + Gemini 2.5 Flash
+- **Database/Auth**: Firebase (Client SDK)
+- **Styling**: Tailwind CSS + ShadCN UI
