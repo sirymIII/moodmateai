@@ -7,7 +7,8 @@ import {
   CardContent, 
   CardHeader, 
   CardTitle, 
-  CardDescription 
+  CardDescription,
+  CardFooter
 } from "@/components/ui/card";
 import { 
   Table, 
@@ -28,11 +29,14 @@ import {
   ArrowUpRight,
   MoreVertical,
   Search,
-  Filter
+  Filter,
+  Lock,
+  Mail
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,9 +46,31 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const { toast } = useToast();
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email === "admin@moodmate.com" && password === "123456789") {
+      setIsAuthenticated(true);
+      toast({
+        title: "Access Granted",
+        description: "Welcome back to the Admin Dashboard.",
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Access Denied",
+        description: "Invalid admin credentials provided.",
+      });
+    }
+  };
 
   const stats = [
     { label: "Total Users", value: "1,284", change: "+12% from last month", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
@@ -66,6 +92,64 @@ export default function AdminPage() {
     user.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
+        <Card className="w-full max-w-md shadow-xl border-t-4 border-t-primary">
+          <CardHeader className="text-center space-y-2">
+            <div className="mx-auto w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground mb-2">
+              <ShieldCheck className="w-7 h-7" />
+            </div>
+            <CardTitle className="text-2xl font-bold font-headline">Admin Portal</CardTitle>
+            <CardDescription>Enter authorized credentials to manage the platform</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleAdminLogin} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="admin-email">Admin Email</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input 
+                    id="admin-email" 
+                    type="email" 
+                    placeholder="admin@moodmate.com" 
+                    className="pl-10 rounded-xl"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="admin-password">Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input 
+                    id="admin-password" 
+                    type="password" 
+                    placeholder="••••••••" 
+                    className="pl-10 rounded-xl"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" className="w-full rounded-full h-12">
+                Access Dashboard
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="justify-center">
+            <Button variant="ghost" size="sm" asChild>
+              <a href="/">Return to Home</a>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-muted/30">
       <div className="container mx-auto px-4 py-8 space-y-8">
@@ -81,6 +165,7 @@ export default function AdminPage() {
             <Button className="gap-2">
               <Settings className="w-4 h-4" /> System Config
             </Button>
+            <Button variant="ghost" onClick={() => setIsAuthenticated(false)}>Log Out</Button>
           </div>
         </div>
 
