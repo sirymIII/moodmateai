@@ -1,5 +1,34 @@
-# Firebase Studio
+# MoodMate AI
 
-This is a NextJS starter in Firebase Studio.
+An AI-powered web chatbot for mental health management and emotional support.
 
-To get started, take a look at src/app/page.tsx.
+## Getting Started
+
+To push this project to your repository, run the following commands in your terminal:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit: Setup MoodMate AI platform"
+git branch -M main
+git remote add origin https://github.com/sirymIII/moodmateai.git
+git push -u origin main
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS
+- **UI Components**: ShadCN UI
+- **State Management**: Zustand
+- **AI Engine**: Genkit with Google Gemini 2.5 Flash
+- **Icons**: Lucide React
+
+## Project Features
+
+- **Empathetic AI Chat**: Real-time emotional support.
+- **Mood Dashboard**: Visualize emotional trends with Recharts.
+- **Resource Center**: Articles on mental health and drug abuse.
+- **Crisis Help**: Immediate access to support lifelines.
+- **Admin Portal**: Platform oversight and security monitoring.
+- **Responsive Design**: Optimized for mobile and desktop.
