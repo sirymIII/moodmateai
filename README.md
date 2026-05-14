@@ -3,39 +3,30 @@
 
 An AI-powered web chatbot for mental health management and emotional support.
 
-## 🚀 How to Push to GitHub
+## 🚀 How to Fix the Git Push Error
 
-If you are seeing errors in the terminal, follow these steps.
+If you see the error `! [rejected] main -> main (non-fast-forward)`, it's because GitHub has files (like a default README) that you don't have locally. 
 
-### 1. Initialize and Stage
-Run these commands in the terminal:
-```bash
-git init
-git add .
-git commit -m "Initial commit: Setup MoodMate AI"
-```
+**Follow these exact steps in your terminal to fix it:**
 
-### 2. Connect to your Repository
-```bash
-git branch -M main
-git remote add origin https://github.com/sirymIII/moodmateai.git
-```
-
-### 3. Push to GitHub
-If your push is rejected (e.g., "non-fast-forward" error), it's because the remote repository has files (like a README or License) that you don't have locally. To fix this on your first push, use the force flag:
+### 1. Force the Push
+Since this is your first time setting up the repository, you can safely "force" your local code to overwrite the remote one:
 
 ```bash
 git push -u origin main --force
 ```
 
-**Note on Errors:** If GitHub asks for a password and your normal password doesn't work, you must use a **Personal Access Token (PAT)**. 
-1. Go to GitHub Settings -> Developer Settings -> Personal Access Tokens -> Tokens (classic).
-2. Generate a token with 'repo' permissions.
-3. Use that token as your password when the terminal asks for it.
+### 2. If GitHub asks for a Password
+GitHub **does not** accept your normal account password in the terminal. You must use a **Personal Access Token (PAT)**:
+
+1. Go to GitHub **Settings** -> **Developer Settings** -> **Personal Access Tokens** -> **Tokens (classic)**.
+2. Generate a new token with the **'repo'** permission checked.
+3. **Copy the token.**
+4. When the terminal asks for your password, **paste the token** instead.
 
 ## 📥 How to Run Locally
 
-Once the code is pushed, you can download it to your computer:
+Once the code is pushed, you can download it to any computer:
 
 1. **Clone the repo:**
    ```bash
@@ -48,7 +39,7 @@ Once the code is pushed, you can download it to your computer:
    npm install
    npm run dev
    ```
-   The app will be available at `http://localhost:3000`.
+   The app will be available at `http://localhost:9002`.
 
 ## Tech Stack
 - **Framework**: Next.js 15 (App Router)
