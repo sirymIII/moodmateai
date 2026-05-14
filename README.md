@@ -5,7 +5,7 @@ An AI-powered web chatbot for mental health management and emotional support.
 
 ## 🚀 How to Push to GitHub
 
-If you are seeing errors in the terminal, follow these exact steps. 
+If you are seeing errors in the terminal, follow these steps.
 
 ### 1. Initialize and Stage
 Run these commands in the terminal:
@@ -22,8 +22,10 @@ git remote add origin https://github.com/sirymIII/moodmateai.git
 ```
 
 ### 3. Push to GitHub
+If your push is rejected (e.g., "non-fast-forward" error), it's because the remote repository has files (like a README or License) that you don't have locally. To fix this on your first push, use the force flag:
+
 ```bash
-git push -u origin main
+git push -u origin main --force
 ```
 
 **Note on Errors:** If GitHub asks for a password and your normal password doesn't work, you must use a **Personal Access Token (PAT)**. 
